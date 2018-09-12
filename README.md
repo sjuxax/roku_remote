@@ -11,11 +11,10 @@ Do not press enter after entering your IP: Just leave it in the text-field and s
 <br><br>
 You shouldn't really need to use the power button as most Rokus will turn on when the input receives power from the TV. However it may be useful for turning the Roku OFF.
 <br><br>
-Runs on Python2 or Python3
+Runs on Python2 or Python3. All modules used are built in
 <br>
-Ensure tkinter is installed:
 <br>
-Runs on Linux and Windows-
+Runs on Linux, Mac, and Windows-
 <br>
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
