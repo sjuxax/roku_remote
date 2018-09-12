@@ -5,7 +5,9 @@
 <br>
 https://blog.roku.com/developer/developer-setup-guide
 <br>
-* Remember its IP address as you'll need to enter it as shown in the image above
+* Remember its IP address as you'll need to enter it as shown in the image above.
+<br><br>
+Do not press enter after entering your IP: Just leave it in the text-field and start using the remote.
 <br><br>
 You shouldn't really need to use the power button as most Rokus will turn on when the input receives power from the TV. However it may be useful for turning the Roku OFF.
 <br><br>
