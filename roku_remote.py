@@ -12,14 +12,14 @@ class RokuRemote:
     def __init__(self, master):
         self.master = master
         master.title("ROKU REMOTE")
-        master.configure(bg="#f2f2f2")
+        master.configure(bg="#F2F2F2")
         self.base_url = ""
         self.imagePath = PhotoImage(file="icon.png")
         self.image = Label(master, image=self.imagePath)
-        self.title_label = Label(master, text="Enter your Roku Server IP: ", bg="#327af3", font="Helvetica 10 bold")
-        self.blank_label1 = Label(master, text="", bg="#f2f2f2")
-        self.blank_label2 = Label(master, text="", bg="#f2f2f2")
-        self.status_label = Label(master, text="", bg="#f2f2f2")
+        self.title_label = Label(master, text="Enter your Roku Server IP: ", bg="#327AF3", font="Helvetica 10 bold")
+        self.blank_label1 = Label(master, text="", bg="#F2F2F2")
+        self.blank_label2 = Label(master, text="", bg="#F2F2F2")
+        self.status_label = Label(master, text="", bg="#F2F2F2")
         self.server_ip_addr = Text(master, height=1, width=15, fg="#F2F2F2", bg="#888888")
         self.up_button = Button(master, fg="#33CC00", bg="#000", text="UP", width=5, command=self.up)
         self.down_button = Button(master, fg="#33CC00", text="DOWN", bg="#000", width=5, command=self.down)
