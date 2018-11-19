@@ -13,6 +13,13 @@ You shouldn't really need to use the power button as most Rokus will turn on whe
 <br><br>
 Runs on Python2 or Python3.
 <br>
+<code>
+  python roku_remote.py
+</code>
+<br>
+<code>
+  python3 roku remote.py
+</code>
 <br>
 Runs on Linux, Mac, and Windows-
 <br>
