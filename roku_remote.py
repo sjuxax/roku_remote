@@ -24,17 +24,14 @@ class RokuRemote:
         )
         self.blank_label1 = Label(
             master,
-            text="",
             bg="#F2F2F2"
         )
         self.blank_label2 = Label(
             master,
-            text="",
             bg="#F2F2F2"
         )
         self.status_label = Label(
             master,
-            text="",
             bg="#F2F2F2"
         )
         self.server_ip_addr = Text(
