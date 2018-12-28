@@ -18,7 +18,7 @@ Runs on Python2 or Python3.
 </code>
 <br>
 <code>
-  python3 roku remote.py
+  python3 roku_remote.py
 </code>
 <br>
 Runs on Linux, Mac, and Windows-
