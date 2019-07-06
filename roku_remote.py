@@ -16,101 +16,44 @@ class RokuRemote:
         self.base_url = ""
         self.imagePath = PhotoImage(file="icon.png")
         self.image = Label(master, image=self.imagePath)
+        # widgets/ UI elements:
         self.title_label = Label(
-            master,
-            text="Enter your Roku Server IP: ",
-            bg="#327AF3",
-            font="Helvetica 10 bold"
-        )
-        self.blank_label1 = Label(
-            master,
-            bg="#F2F2F2"
-        )
-        self.blank_label2 = Label(
-            master,
-            bg="#F2F2F2"
-        )
-        self.status_label = Label(
-            master,
-            bg="#F2F2F2"
-        )
+            master, text="Enter your Roku Server IP: ",
+            bg="#327AF3", font="Helvetica 10 bold")
+        self.blank_label1 = Label(master, bg="#F2F2F2")
+        self.blank_label2 = Label(master, bg="#F2F2F2")
+        self.status_label = Label(master, bg="#F2F2F2")
         self.server_ip_addr = Text(
-            master,
-            height=1,
-            width=15,
-            fg="#F2F2F2",
-            bg="#888888"
-        )
+            master, height=1, width=15,
+            fg="#F2F2F2", bg="#888888")
         self.up_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#000",
-            text="UP",
-            width=5,
-            command=self.up
-        )
+            master, fg="#33CC00", bg="#000",
+            text="UP", width=5, command=self.up)
         self.down_button = Button(
-            master,
-            fg="#33CC00",
-            text="DOWN",
-            bg="#000",
-            width=5,
-            command=self.down
-        )
+            master, fg="#33CC00", text="DOWN",
+            bg="#000", width=5, command=self.down)
         self.left_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#000",
-            text="LEFT",
-            width=5,
-            command=self.left
-        )
+            master, fg="#33CC00", bg="#000",
+            text="LEFT", width=5, command=self.left)
         self.right_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#000",
-            text="RIGHT",
-            width=5,
-            command=self.right
-        )
+            master, fg="#33CC00", bg="#000",
+            text="RIGHT", width=5, command=self.right)
         self.power_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#FF3346",
-            text="POWER",
-            command=self.power
-        )
+            master, fg="#33CC00", bg="#FF3346",
+            text="POWER", command=self.power)
         self.home_button = Button(
-            master,
-            fg="#33CC00",
-            text="HOME",
-            bg="#000",
-            command=self.home
-        )
+            master, fg="#33CC00", text="HOME",
+            bg="#000", command=self.home)
         self.play_pause_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#000",
-            text="PLAY",
-            width=6,
-            command=self.play_pause
-        )
+            master, fg="#33CC00", bg="#000", text="PLAY",
+            width=6, command=self.play_pause)
         self.back_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#000",
-            text="BACK",
-            width=6,
-            command=self.back
-        )
+            master, fg="#33CC00", bg="#000", text="BACK",
+            width=6, command=self.back)
         self.select_button = Button(
-            master,
-            fg="#33CC00",
-            bg="#000",
-            text="OK",
-            width=5,
-            command=self.select
-        )
+            master, fg="#33CC00", bg="#000", text="OK",
+            width=5, command=self.select)
+        # begin grid placement
         self.image.grid(row=0, sticky=W + E + N)
         self.title_label.grid(row=1, sticky=W,)
         self.server_ip_addr.grid(row=1, sticky=E)
@@ -180,7 +123,7 @@ class RokuRemote:
         try:
             with closing(urlopen(url, data)) as response:
                 response.read().decode()
-        except:
+        except Exception:
             print("invalid entry")
 
 
