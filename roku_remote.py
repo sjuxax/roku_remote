@@ -1,3 +1,5 @@
+#! /usr/bin/env
+# rootVIII
 from tkinter import Tk, Label, Button, E, W
 from tkinter import Text, PhotoImage, END
 from contextlib import closing
@@ -11,7 +13,6 @@ class RokuRemote:
         self.master = master
         master.title('ROKU REMOTE')
         master.configure(bg='#F2F2F2')
-        self.base_url = ''
         self.imagePath = PhotoImage(file='icon.png')
         self.image = Label(master, image=self.imagePath)
         self.title_label = Label(
