@@ -1,4 +1,3 @@
-#! /usr/bin/env
 # rootVIII
 from tkinter import Tk, Label, Button, E, W
 from tkinter import Text, PhotoImage, END
