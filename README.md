@@ -15,7 +15,7 @@ You shouldn't really need to use the power button as most Rokus
 will turn on when the input receives power from the TV.
 However it may be useful for turning the Roku OFF.
 <br><br>
-requires Python3
+requires Python3 (and python3-tk if on Linux)
 <br><br>
 Roku Remote may be installed as a package:
 Run <code>pip install -e . </code> from project root.
