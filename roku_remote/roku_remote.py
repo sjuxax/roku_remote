@@ -1,6 +1,7 @@
 # rootVIII
 from tkinter import Tk, Label, Button, E, W
 from tkinter import Text, PhotoImage, END
+from os.path import realpath
 from contextlib import closing
 from threading import Thread
 from urllib.parse import urlencode
@@ -12,7 +13,8 @@ class RokuRemote:
         self.master = master
         master.title('ROKU REMOTE')
         master.configure(bg='#F2F2F2')
-        self.imagePath = PhotoImage(file='icon.png')
+        icon = realpath(__file__)[:-14] + 'icon.png'
+        self.imagePath = PhotoImage(file=icon)
         self.image = Label(master, image=self.imagePath)
         self.title_label = Label(
             master, text='Enter your Roku Server IP: ',
