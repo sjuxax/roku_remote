@@ -16,10 +16,10 @@ will turn on when the input receives power from the TV.
 However it may be useful for turning the Roku OFF.
 <br><br>
 requires Python3
-<br>
+<br><br>
 Roku Remote may be installed as a package:
 Run <code>pip install -e . </code> from project root.
-<code>roku_remote</code> will run the program.
+The command <code>roku_remote</code> will run the program.
 
 <br>
 Runs on Linux, Mac, and Windows
