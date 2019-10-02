@@ -20,8 +20,7 @@ requires Python3
 Roku Remote may be installed as a package:
 Run <code>pip install -e . </code> from project root.
 The command <code>roku_remote</code> will run the program.
-
-<br>
+<br><br>
 Runs on Linux, Mac, and Windows
 <br>
 This was developed on Ubuntu 16.04.4 LTS.
