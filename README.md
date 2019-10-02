@@ -17,13 +17,10 @@ However it may be useful for turning the Roku OFF.
 <br><br>
 requires Python3
 <br>
-<code>
-  python roku_remote.py
-</code>
-<br>
-<code>
-  python3 roku_remote.py
-</code>
+Roku Remote may be installed as a package:
+Run <code>pip install -e . </code> from project root.
+<code>roku_remote</code> will run the program.
+
 <br>
 Runs on Linux, Mac, and Windows
 <br>
