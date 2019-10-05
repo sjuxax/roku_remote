@@ -16,7 +16,7 @@ will turn on when the input receives power from the TV.
 However it may be useful for turning the Roku OFF.
 <br><br>
 requires <code>Python3</code> (and <code>python3-tk</code> if on Linux)
-<br>
+<br><br>
 <pre>
   <code>
     
