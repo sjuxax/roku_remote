@@ -6,10 +6,14 @@ from contextlib import closing
 from threading import Thread
 from urllib.parse import urlencode
 from urllib.request import urlopen
+import socket
 
 
 class RokuRemote:
     def __init__(self, master):
+        self.cached_ip = None
+        self.last_ip_lookup = None
+        self.netloc = None
         self.master = master
         master.title('ROKU REMOTE')
         master.configure(bg='#F2F2F2')
@@ -108,7 +112,21 @@ class RokuRemote:
 
     def make_request(self, btn_cmd):
         ip = self.server_ip_addr.get('1.0', END).strip()
-        url = 'http://' + ip + ':8060/keypress/' + btn_cmd
+
+        # if user inputs something that doesn't validate as an ip address, try
+        # to resolve it as a hostname.
+        # we still need to make the request from the IP because Roku disallows
+        # access by hostname in an incorrect attempt to mitigate DNS rebinding
+        # attacks. cf. https://community.roku.com/t5/Roku-Developer-Program/External-Control-API-suddenly-returns-403-Forbidden/m-p/499352/highlight/true#M42620
+        try:
+            socket.inet_aton(ip)
+            self.netloc = ip
+        except OSError:
+            if not self.cached_ip or self.last_ip_lookup != ip:
+                self.last_ip_lookup = ip
+                self.cached_ip = socket.gethostbyname(ip)
+                self.netloc = self.cached_ip
+        url = 'http://' + self.netloc + ':8060/keypress/' + btn_cmd
         try:
             with closing(urlopen(url, urlencode('').encode())) as resp:
                 resp.read().decode()
