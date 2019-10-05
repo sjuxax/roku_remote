@@ -15,7 +15,8 @@ You shouldn't really need to use the power button as most Rokus
 will turn on when the input receives power from the TV.
 However it may be useful for turning the Roku OFF.
 <br><br>
-requires Python3 (and python3-tk if on Linux)
+requires <code>Python3</code> (and <code>python3-tk</code> if on Linux)
+<br>
 <pre>
   <code>
     
@@ -34,6 +35,7 @@ Then run the command from any location in your shell: roku_remote
 
   </code>
 </pre>
+<br>
 Runs on Linux, Mac, and Windows
 <br>
 This was developed on Ubuntu 16.04.4 LTS.
