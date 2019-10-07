@@ -7,6 +7,11 @@ https://blog.roku.com/developer/developer-setup-guide
 <br>
 * Remember its IP address as you'll need to
 enter it as shown in the image above.
+<br />
+* If you configure a hostname on a local DNS server, this should use it just
+fine. This is an upgrade over the standard REST interface, which rejects
+requests that have a hostname in the Host header in an overzealous attempt
+to prevent DNS rebinding attacks. Especially handy for multi-Roku homes.
 <br><br>
 Do not press enter after entering your IP: Just leave it in the
 text-field and start using the remote.

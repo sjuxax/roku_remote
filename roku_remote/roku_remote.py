@@ -33,7 +33,7 @@ class RokuRemote:
         self.imagePath = PhotoImage(file=icon)
         self.image = Label(master, image=self.imagePath)
         self.title_label = Label(
-            master, text='Enter your Roku Server IP: ',
+            master, text='Roku IP or hostname: ',
             bg='#327AF3', font='Arial 10 bold')
         self.blank_label1 = Label(master, bg='#F2F2F2')
         self.blank_label2 = Label(master, bg='#F2F2F2')
@@ -141,7 +141,7 @@ class RokuRemote:
             with closing(urlopen(url, urlencode('').encode())) as resp:
                 resp.read().decode()
         except (URLError, socket.timeout) as e:
-            self.add_to_addrlog('urlopen {} failed..'.format(url))
+            self.add_to_addrlog('urlopen {} failed.'.format(url))
             self.add_to_addrlog('Ensure Roku at {} is available.'.format(ip))
             self.add_to_addrlog('Exception details: {}'.format(e))
         except socket.gaierror as e:
