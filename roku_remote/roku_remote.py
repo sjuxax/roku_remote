@@ -5,15 +5,27 @@ from os.path import realpath
 from contextlib import closing
 from threading import Thread
 from urllib.parse import urlencode
-from urllib.request import urlopen
-from socket import gethostbyname, inet_aton
+from urllib.request import urlopen, URLError
+import socket
+import sys
+import time
 
 
 class RokuRemote:
     def __init__(self, master):
-        self.cached_ip = None
-        self.last_ip_lookup = None
+        self.addrinfo = None
         self.netloc = None
+
+        # for debug, open an addr log
+        self.addrlog = open('addrs.log', 'a')
+
+        # Roku does not allow WAN access, so we should never take very long to
+        # talk to an endpoint, and a remote isn't much use with a giant lag
+        # time. As such, a 5 second default socket timeout is plenty --
+        # in fact, probably still too much.
+        #
+        socket.setdefaulttimeout(5)
+
         self.master = master
         master.title('ROKU REMOTE')
         master.configure(bg='#F2F2F2')
@@ -110,22 +122,38 @@ class RokuRemote:
         self.status_label.config(text='OK', fg='#888888')
         self.make_request('select')
 
+    def add_to_addrlog(self, msg):
+        msg = "DEBUG: addrlog: {}".format(msg)
+        print(msg, file=sys.stderr)
+        print(msg, file=self.addrlog, end="\n", flush=True)
+
     def make_request(self, btn_cmd):
+        # for debug: grab perf counter
+        mkreq_start = time.perf_counter()
+
         ip = self.server_ip_addr.get('1.0', END).strip()
+        self.add_to_addrlog('send btn_cmd {} to addr {}'.format(btn_cmd, ip))
         try:
-            inet_aton(ip)
-            self.netloc = ip
-        except OSError:
-            if not self.cached_ip or self.last_ip_lookup != ip:
-                self.last_ip_lookup = ip
-                self.cached_ip = gethostbyname(ip)
-                self.netloc = self.cached_ip
-        url = 'http://' + self.netloc + ':8060/keypress/' + btn_cmd
-        try:
+            self.addrinfo = socket.getaddrinfo(ip, 8060, type=socket.SOCK_STREAM)
+            self.netloc = self.addrinfo[0][4][0]
+
+            url = 'http://' + self.netloc + ':8060/keypress/' + btn_cmd
             with closing(urlopen(url, urlencode('').encode())) as resp:
                 resp.read().decode()
-        except Exception:
-            print('invalid entry')
+        except (URLError, socket.timeout) as e:
+            self.add_to_addrlog('urlopen {} failed..'.format(url))
+            self.add_to_addrlog('Ensure Roku at {} is available.'.format(ip))
+            self.add_to_addrlog('Exception details: {}'.format(e))
+        except socket.gaierror as e:
+            self.add_to_addrlog("Input '{}' not a recognized network address.".format(ip))
+            self.add_to_addrlog('Not sending request. Exception details: {}'.format(e))
+        except Exception as e:
+            self.add_to_addrlog('Unexpected exception occurred. Raising.')
+            raise e
+        finally:
+            mkreq_stop = time.perf_counter()
+            rtime = (mkreq_stop - mkreq_start)
+            self.add_to_addrlog('----- end make_request: took {:.2f}s  -----'.format(rtime))
 
 
 def roku_thread():
